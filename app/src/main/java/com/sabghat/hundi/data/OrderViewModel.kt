@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 class OrderViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: OrderRepository
-    private val getAllOrders: LiveData<List<Order>>
+    val getAllOrders: LiveData<List<Order>>
 
     init {
         val orderDao = OrderDatabase.getDatabase(application).orderDao
@@ -21,6 +21,12 @@ class OrderViewModel(application: Application) : AndroidViewModel(application) {
     fun insertOrder(order: Order) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertOrder(order)
+        }
+    }
+
+    fun updateOrder(order: Order) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateOrder(order)
         }
     }
 }

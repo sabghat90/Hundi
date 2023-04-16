@@ -4,9 +4,13 @@ import androidx.lifecycle.LiveData
 
 class OrderRepository(private val orderDao: OrderDao) {
 
-    val getAllOrders : LiveData<List<Order>> = orderDao.getAllOrders()
+    val getAllOrders: LiveData<List<Order>> = orderDao.getAllOrders()
 
     suspend fun insertOrder(order: Order) {
         orderDao.insertOrder(order)
+    }
+
+    suspend fun updateOrder(order: Order) {
+        orderDao.updateOrder(order)
     }
 }
